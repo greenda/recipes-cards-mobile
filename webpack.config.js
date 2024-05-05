@@ -8,20 +8,28 @@ module.exports = {
   module: {
     rules: [
       {
-         test: /\.(js|jsx|tsx|ts)$/,
-         exclude: /node_modules/,
-         loader: 'babel-loader'
-        },
+        test: /\.(js|jsx|tsx|ts)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
       {
         test: /\.html$/i,
         loader: "html-loader",
         options: {}
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
-		extensions: [".ts", ".js"]
-	},
+    extensions: [".ts", ".js"]
+  },
   output: {
     path: path.join(__dirname, "build"),
     filename: "index.js",

@@ -1,10 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="e5191537c0bc65df8062.css">
 </head>
+
 <body>
+  <div class="page"></div>
+
+  <script>
+    // const button = document.createElement('button');
+
+    // button.onclick = toTodoist;
+    // button.textContent = 'Script';
+
+    // document.querySelector('body').appendChild(button);
+
+    // ---- в библиотеку ---- //
+    const RECIPE_TYPE = {
+      FIRST_COURSE: 'first-course',
+      SECOND_COURSE: 'secound-course',
+      GARNISH: 'garnish',
+      SALAD: 'salad',
+      DESSERT: 'dessert',
+      BREAKFAST: 'breakfast',
+    };
+    // ---- в библиотеку ---- //
+
+    const RECIPE_TYPE_MAP = {
+      [RECIPE_TYPE.FIRST_COURSE]: 'Первые блюда',
+      [RECIPE_TYPE.SECOND_COURSE]: 'Вторые блюда',
+      [RECIPE_TYPE.GARNISH]: 'Гарниры',
+      [RECIPE_TYPE.SALAD]: 'Салаты',
+      [RECIPE_TYPE.DESSERT]: 'Десерты',
+      [RECIPE_TYPE.BREAKFAST]: 'Завтраки',
+    };
+
+    async function init() {
+      const pageContainer = document.querySelector('.page');
+
+      // TODO узнать про res.text, почему он ассинхронный
+      const fetchFile = file => fetch(file)
+        .then((res) => res.text());
+
+      const ingredients = await fetchFile('./ingredients.json');
+      const units = await fetchFile('./units.js');
+      const recipes = await fetchFile('./recipes.json');
+
+      const INGREDIENTS = JSON.parse(ingredients);
+      const UNITS = JSON.parse(units);
+      const RECIPES = JSON.parse(recipes);
+
+      function renderMenu() {
+        const pageTitle = document.createElement('span');
+        pageContainer.appendChild(pageTitle);
+
+        pageTitle.textContent = 'Рецепты';
+        pageTitle.className = 'page__title'
+
+        const sectionContainer = document.createElement('div');
+        sectionContainer.className = 'section-container';
+
+        [
+          {
+            type: RECIPE_TYPE.FIRST_COURSE,
+            color: 'caramel_dark',
+          },
+          {
+            type: RECIPE_TYPE.SECOND_COURSE,
+            color: 'caramel_light',
+          },
+          {
+            type: RECIPE_TYPE.BREAKFAST,
+            color: 'sand_light',
+          },
+          {
+            type: RECIPE_TYPE.GARNISH,
+            color: 'caramel_light',
+          },
+          {
+            type: RECIPE_TYPE.SALAD,
+            color: 'caramel_dark',
+          },
+          {
+            type: RECIPE_TYPE.DESSERT,
+            color: 'caramel_light',
+          },
+        ].forEach(({ type, color, href}) => {
+          const sectionButton = document.createElement('button');
+
+          sectionButton.textContent = RECIPE_TYPE_MAP[type];
+          sectionButton.className = `type-container type-container_${color}`;
+          sectionButton.type = type;
+          sectionButton.onclick = renderSection;
+
+          sectionContainer.appendChild(sectionButton);
+        });
+
+        pageContainer.appendChild(sectionContainer);
+      }
+
+      function clearScreen() {
+        pageContainer.textContent = '';
+      }
+
+      function renderSection(event) {
+        clearScreen();
+
+        const recipeType = event.currentTarget.attributes.type.nodeValue;
+
+        const recipes = RECIPES.filter(({ type }) => type === recipeType );
+
+        // TODO сделать добавление названий всех рецептов из recipes
+      }
+
+      renderMenu();
+    }
+
+    (async () => {
+      await init();
+    })();
+  </script>
 <script defer src="index.js"></script></body>
+
 </html>

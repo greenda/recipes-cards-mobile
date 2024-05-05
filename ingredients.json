@@ -1,0 +1,694 @@
+[
+  {
+    "version": "1.0",
+    "id": 1,
+    "name": "Овощной или мясной бульон",
+    "linkedUnits": [
+      1
+    ],
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 2,
+    "name": "Белокочаная капуста",
+    "linkedUnits": [
+      2
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Картофель",
+    "linkedUnits": [
+      3
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Перец болгарский красный",
+    "linkedUnits": []
+  },
+  {
+    "id": 5,
+    "name": "Морковь",
+    "linkedUnits": [
+      4
+    ],
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 6,
+    "name": "Свёкла",
+    "linkedUnits": [
+      4
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Лук репчатый",
+    "linkedUnits": [
+      4
+    ],
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 8,
+    "name": "Помидоры",
+    "linkedUnits": [
+      3
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Томатная паста",
+    "linkedUnits": [
+      5
+    ],
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 10,
+    "name": "Оливковое масло",
+    "linkedUnits": [
+      5
+    ],
+    "inReserve": true
+  },
+  {
+    "id": 11,
+    "name": "Петрушка/укроп",
+    "linkedUnits": [
+      7
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Лимонный сок",
+    "linkedUnits": [
+      5
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Сметана",
+    "linkedUnits": [
+      7
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Морская соль/перец",
+    "linkedUnits": [
+      7
+    ],
+    "inReserve": true
+  },
+  {
+    "id": 15,
+    "name": "Чеснок",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 16,
+    "name": "Фасоль белая",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 17,
+    "name": "Кукуруза консервированная"
+  },
+  {
+    "id": 18,
+    "name": "Куриный бульон",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 19,
+    "name": "Сливки"
+  },
+  {
+    "id": 20,
+    "name": "Сливочное масло",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 21,
+    "name": "Петрушка"
+  },
+  {
+    "id": 22,
+    "name": "Соль",
+    "inReserve": true
+  },
+  {
+    "id": 23,
+    "name": "Перец молотый",
+    "inReserve": true
+  },
+  {
+    "id": 24,
+    "name": "Филе индейки"
+  },
+  {
+    "id": 25,
+    "name": "Горчица",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 26,
+    "name": "Паприка",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 27,
+    "name": "Сухой чеснок",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 28,
+    "name": "Укроп"
+  },
+  {
+    "id": 29,
+    "name": "Масло растительное",
+    "inReserve": true
+  },
+  {
+    "id": 30,
+    "name": "Фасоль красная",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 31,
+    "name": "Грецкие орехи",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 32,
+    "name": "Кинза"
+  },
+  {
+    "id": 33,
+    "name": "Орегано",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 34,
+    "name": "Кориандр",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 35,
+    "name": "Хмели-сунели",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 36,
+    "name": "Говядина",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 37,
+    "name": "Лавровый лист",
+    "inReserve": true
+  },
+  {
+    "id": 38,
+    "name": "Вода",
+    "inReserve": true
+  },
+  {
+    "id": 39,
+    "name": "Мука",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 40,
+    "name": "Макрель конс.сс"
+  },
+  {
+    "id": 41,
+    "name": "Сардины конс.сс"
+  },
+  {
+    "id": 42,
+    "name": "Сельдерей"
+  },
+  {
+    "id": 43,
+    "name": "Шафран",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 44,
+    "name": "Карри",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 45,
+    "name": "Тмин",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 46,
+    "name": "Душистый перец",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 47,
+    "name": "Макароны Radiatori"
+  },
+  {
+    "id": 48,
+    "name": "Помидоры в соб.соку"
+  },
+  {
+    "id": 49,
+    "name": "Тыква"
+  },
+  {
+    "id": 50,
+    "name": "Перец чили зеленый",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 51,
+    "name": "Перец чили красный",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 52,
+    "name": "Йогурт греческий"
+  },
+  {
+    "id": 53,
+    "name": "Яблочный уксус",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 54,
+    "name": "Зира",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 55,
+    "name": "Чечевица",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 56,
+    "name": "Кумин",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 57,
+    "name": "Фасоль стручковая"
+  },
+  {
+    "id": 58,
+    "name": "Огурцы мар."
+  },
+  {
+    "id": 59,
+    "name": "Соевый соус",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 60,
+    "name": "Булгур",
+    "inReserve": true,
+    "check": true
+  },
+  {
+    "id": 61,
+    "name": "Сыр"
+  },
+  {
+    "id": 62,
+    "name": "Хлеб ржаной"
+  },
+  {
+    "id": 63,
+    "name": "Яйцо"
+  },
+  {
+    "id": 64,
+    "name": "Треска"
+  },
+  {
+    "id": 65,
+    "name": "Кабачок"
+  },
+  {
+    "id": 66,
+    "name": "Мясной бульон"
+  },
+  {
+    "id": 67,
+    "name": "Колбаса варёная"
+  },
+  {
+    "id": 68,
+    "name": "Оливки"
+  },
+  {
+    "id": 69,
+    "name": "Огуречный рассол"
+  },
+  {
+    "id": 70,
+    "name": "Каперсы"
+  },
+  {
+    "id": 71,
+    "name": "Лимон"
+  },
+  {
+    "id": 72,
+    "name": "Укроп"
+  },
+  {
+    "id": 73,
+    "name": "Филе курицы"
+  },
+  {
+    "id": 74,
+    "name": "Чернослив без косточек"
+  },
+  {
+    "id": 75,
+    "name": "Курага"
+  },
+  {
+    "id": 76,
+    "name": "Творожный сыр"
+  },
+  {
+    "id": 77,
+    "name": "Приправа для курицы"
+  },
+  {
+    "id": 78,
+    "name": "Креветки",
+    "linkedUnits": []
+  },
+  {
+    "id": 79,
+    "name": "Лук-порей",
+    "linkedUnits": []
+  },
+  {
+    "id": 80,
+    "name": "Фунчоза",
+    "linkedUnits": []
+  },
+  {
+    "id": 81,
+    "name": "Лайм",
+    "linkedUnits": []
+  },
+  {
+    "id": 82,
+    "name": "Карри паста",
+    "linkedUnits": []
+  },
+  {
+    "id": 83,
+    "name": "Черри",
+    "linkedUnits": []
+  },
+  {
+    "id": 84,
+    "name": "Лук зеленый",
+    "linkedUnits": []
+  },
+  {
+    "id": 85,
+    "name": "Кокосовое молоко",
+    "linkedUnits": []
+  },
+  {
+    "id": 86,
+    "name": "Зеленый горошек",
+    "linkedUnits": []
+  },
+  {
+    "id": 87,
+    "name": "Цветная капуста",
+    "linkedUnits": []
+  },
+  {
+    "id": 88,
+    "name": "Базилик",
+    "linkedUnits": []
+  },
+  {
+    "id": 89,
+    "name": "Макароны",
+    "linkedUnits": []
+  },
+  {
+    "id": 90,
+    "name": "Фарш",
+    "linkedUnits": []
+  },
+  {
+    "id": 91,
+    "name": "Куриные ножки",
+    "linkedUnits": []
+  },
+  {
+    "id": 92,
+    "name": "Прованские травы",
+    "linkedUnits": []
+  },
+  {
+    "id": 93,
+    "name": "Куриное филе",
+    "linkedUnits": []
+  },
+  {
+    "id": 94,
+    "name": "Сухари панировочные",
+    "linkedUnits": []
+  },
+  {
+    "id": 95,
+    "name": "Нут вареный",
+    "linkedUnits": []
+  },
+  {
+    "id": 96,
+    "name": "Кокосовое немолоко",
+    "linkedUnits": []
+  },
+  {
+    "id": 97,
+    "name": "Куркума",
+    "linkedUnits": []
+  },
+  {
+    "id": 98,
+    "name": "Рис",
+    "linkedUnits": []
+  },
+  {
+    "id": 99,
+    "name": "Творог 9%",
+    "linkedUnits": []
+  },
+  {
+    "id": 100,
+    "name": "Манная крупа",
+    "linkedUnits": []
+  },
+  {
+    "id": 101,
+    "name": "Сахар",
+    "linkedUnits": []
+  },
+  {
+    "id": 102,
+    "name": "Паста",
+    "linkedUnits": []
+  },
+  {
+    "id": 103,
+    "name": "Томатный итальянский соус",
+    "linkedUnits": []
+  },
+  {
+    "id": 104,
+    "name": "Моцарелла",
+    "linkedUnits": []
+  },
+  {
+    "id": 105,
+    "name": "Сливочный сыр",
+    "linkedUnits": []
+  },
+  {
+    "id": 106,
+    "name": "Сливки 10-20%",
+    "linkedUnits": []
+  },
+  {
+    "id": 107,
+    "name": "Базилик свежий",
+    "linkedUnits": []
+  },
+  {
+    "id": 108,
+    "name": "Орехи",
+    "linkedUnits": []
+  },
+  {
+    "id": 109,
+    "name": "Кукурузная крупа",
+    "linkedUnits": []
+  },
+  {
+    "id": 110,
+    "name": "Молоко",
+    "linkedUnits": []
+  },
+  {
+    "id": 111,
+    "name": "Ваниль",
+    "linkedUnits": []
+  },
+  {
+    "id": 112,
+    "name": "Куриные сердечки"
+  },
+  {
+    "id": 113,
+    "name": "Шампиньоны"
+  },
+  {
+    "id": 114,
+    "name": "Огурцы соленые"
+  },
+  {
+    "id": 115,
+    "name": "Перец чили"
+  },
+  {
+    "id": 116,
+    "name": "Желтки",
+    "linkedUnits": []
+  },
+  {
+    "id": 117,
+    "name": "Свинина шейка",
+    "linkedUnits": []
+  },
+  {
+    "id": 118,
+    "name": "Майонез",
+    "linkedUnits": []
+  },
+  {
+    "id": 119,
+    "name": "Кардамон молотый",
+    "linkedUnits": []
+  },
+  {
+    "id": 118,
+    "name": "Кефир 3.2%",
+    "linkedUnits": []
+  },
+  {
+    "id": 119,
+    "name": "Сода",
+    "linkedUnits": []
+  },
+  {
+    "id": 120,
+    "name": "Белый хлеб",
+    "linkedUnits": []
+  },
+  {
+    "id": 121,
+    "name": "Барбарис",
+    "linkedUnits": []
+  },
+  {
+    "id": 122,
+    "name": "Свекла",
+    "linkedUnits": []
+  },
+  {
+    "id": 123,
+    "name": "Капуста квашенная",
+    "linkedUnits": []
+  },
+  {
+    "id": 124,
+    "name": "Растительное масло нерафинированное",
+    "linkedUnits": []
+  },
+  {
+    "id": 122,
+    "name": "Свинина",
+    "linkedUnits": []
+  },
+  {
+    "id": 122,
+    "name": "Говяжья печень",
+    "linkedUnits": []
+  },
+  {
+    "id": 123,
+    "name": "Розмарин",
+    "linkedUnits": []
+  },
+  {
+    "id": 124,
+    "name": "Майоран",
+    "linkedUnits": []
+  },
+  {
+    "id": 125,
+    "name": "Батон",
+    "linkedUnits": []
+  },
+  {
+    "id": 126,
+    "name": "Зелень",
+    "linkedUnits": []
+  },
+  {
+    "id": 125,
+    "name": "Изюм",
+    "linkedUnits": []
+  }
+]
