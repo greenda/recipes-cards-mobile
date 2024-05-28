@@ -1,4 +1,4 @@
-[{
+export const units = [{
   "version": "1.0",
   "id": 1,
   "name": "л"

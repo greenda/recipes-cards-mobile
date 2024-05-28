@@ -8,5 +8,6 @@
     "removeComments": true,
     "inlineSourceMap": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
   }
 }

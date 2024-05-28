@@ -10,7 +10,12 @@ module.exports = {
       {
         test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            ['@babel/preset-env', { targets: "defaults" }]
+          ],
+        },
       },
       {
         test: /\.css$/i,
@@ -20,6 +25,10 @@ module.exports = {
         test: /\.html$/i,
         loader: "html-loader",
         options: {}
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,

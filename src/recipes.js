@@ -1,4 +1,4 @@
-[
+export const recipes = [
   {
     "version": "1.0",
     "id": 1,

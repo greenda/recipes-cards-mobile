@@ -1,4 +1,4 @@
-[
+export const ingredients = [
   {
     "version": "1.0",
     "id": 1,

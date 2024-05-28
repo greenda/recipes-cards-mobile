@@ -5,13 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="index.css">
+  <!-- <link rel="stylesheet" href="index.css"> -->
+  <script type="application/json" src="./ingredients.json"></script>
 </head>
 
 <body>
   <div class="page"></div>
 
-  <script>
+  <!-- <script>
     // const button = document.createElement('button');
 
     // button.onclick = toTodoist;
@@ -46,9 +47,9 @@
       const fetchFile = file => fetch(file)
         .then((res) => res.text());
 
-      const ingredients = await fetchFile('./ingredients.json');
-      const units = await fetchFile('./units.js');
-      const recipes = await fetchFile('./recipes.json');
+      // const ingredients = await fetchFile('./ingredients.json');
+      // const units = await fetchFile('./units.js');
+      // const recipes = await fetchFile('./recipes.json');
 
       const INGREDIENTS = JSON.parse(ingredients);
       const UNITS = JSON.parse(units);
@@ -123,7 +124,7 @@
     (async () => {
       await init();
     })();
-  </script>
+  </script> -->
 </body>
 
 </html>
