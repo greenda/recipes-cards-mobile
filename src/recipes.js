@@ -2030,7 +2030,7 @@ export const recipes = [
     "url": "https://www.edimdoma.ru/retsepty/59233-svinina-zapechennaya-s-tykvoy"
   },
   {
-    "id": 28,
+    "id": 29,
     "title": "Манник ночной",
     "type": "dessert",
     "idInCategory": 4,
@@ -2088,7 +2088,7 @@ export const recipes = [
     "url": "https://www.edimdoma.ru/retsepty/149421-mannik-nochnoy-k-zavtraku"
   },
   {
-    "id": 29,
+    "id": 30,
     "title": "Тушёная капуста",
     "type": "garnish",
     "idInCategory": 3,
@@ -2124,7 +2124,7 @@ export const recipes = [
     "url": "https://www.edimdoma.ru/retsepty/5151-tushenaya-kapusta"
   },
   {
-    "id": 30,
+    "id": 31,
     "title": "Котлеты из мяса (курицы, трески, щуки)",
     "type": "secound-course",
     "idInCategory": 16,
@@ -2172,7 +2172,7 @@ export const recipes = [
     "url": null
   },
   {
-    "id": 31,
+    "id": 32,
     "title": "Плов из курицы",
     "type": "secound-course",
     "idInCategory": 17,
@@ -2229,7 +2229,7 @@ export const recipes = [
     "url": "https://www.edimdoma.ru/retsepty/13358-plov-s-kuritsey"
   },
   {
-    "id": 32,
+    "id": 33,
     "title": "Макароны по-флотски",
     "type": "secound-course",
     "idInCategory": 18,
@@ -2265,7 +2265,7 @@ export const recipes = [
     "url": null
   },
   {
-    "id": 32,
+    "id": 34,
     "title": "Винегрет",
     "type": "secound-course",
     "idInCategory": 18,
@@ -2322,7 +2322,7 @@ export const recipes = [
     "url": "https://www.edimdoma.ru/retsepty/77556-vinegret-klassicheskiy"
   },
   {
-    "id": 32,
+    "id": 35,
     "title": "Мясо по-французски",
     "type": "secound-course",
     "idInCategory": 18,
@@ -2366,7 +2366,7 @@ export const recipes = [
     "url": null
   },
   {
-    "id": 32,
+    "id": 36,
     "title": "Оладьи из говяжьей печени",
     "type": "secound-course",
     "idInCategory": 18,
@@ -2415,7 +2415,7 @@ export const recipes = [
     "url": "https://www.edimdoma.ru/retsepty/7131-oladi-iz-govyazhey-pecheni"
   },
   {
-    "id": 33,
+    "id": 37,
     "title": "Мясной рулет с омлетом",
     "type": "breakfast",
     "idInCategory": 2,
@@ -2474,7 +2474,7 @@ export const recipes = [
     "nutritionalValue": "4/4/4 130",
     "url": "https://www.povarenok.ru/recipes/show/161387/"
   }, {
-    "id": 33,
+    "id": 38,
     "title": "Творожная запеканка",
     "type": "dessert",
     "idInCategory": 5,

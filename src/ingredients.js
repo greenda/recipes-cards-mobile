@@ -7,7 +7,8 @@ export const ingredients = [
       1
     ],
     "inReserve": true,
-    "check": true
+    "check": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 2,
@@ -104,7 +105,8 @@ export const ingredients = [
     "linkedUnits": [
       7
     ],
-    "inReserve": true
+    "inReserve": true,
+    "notDefaultSelect": true
   },
   {
     "id": 15,
@@ -126,7 +128,8 @@ export const ingredients = [
     "id": 18,
     "name": "Куриный бульон",
     "inReserve": true,
-    "check": true
+    "check": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 19,
@@ -145,12 +148,14 @@ export const ingredients = [
   {
     "id": 22,
     "name": "Соль",
-    "inReserve": true
+    "inReserve": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 23,
     "name": "Перец молотый",
-    "inReserve": true
+    "inReserve": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 24,
@@ -181,7 +186,8 @@ export const ingredients = [
   {
     "id": 29,
     "name": "Масло растительное",
-    "inReserve": true
+    "inReserve": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 30,
@@ -226,18 +232,21 @@ export const ingredients = [
   {
     "id": 37,
     "name": "Лавровый лист",
-    "inReserve": true
+    "inReserve": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 38,
     "name": "Вода",
-    "inReserve": true
+    "inReserve": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 39,
     "name": "Мука",
     "inReserve": true,
-    "check": true
+    "check": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 40,
@@ -307,7 +316,8 @@ export const ingredients = [
     "id": 53,
     "name": "Яблочный уксус",
     "inReserve": true,
-    "check": true
+    "check": true,
+    "notDefaultSelect": true,
   },
   {
     "id": 54,
@@ -369,7 +379,8 @@ export const ingredients = [
   },
   {
     "id": 66,
-    "name": "Мясной бульон"
+    "name": "Мясной бульон",
+    "notDefaultSelect": true,
   },
   {
     "id": 67,
@@ -533,7 +544,8 @@ export const ingredients = [
   {
     "id": 101,
     "name": "Сахар",
-    "linkedUnits": []
+    "linkedUnits": [],
+    "notDefaultSelect": true,
   },
   {
     "id": 102,
@@ -629,7 +641,8 @@ export const ingredients = [
   {
     "id": 119,
     "name": "Сода",
-    "linkedUnits": []
+    "linkedUnits": [],
+    "notDefaultSelect": true,
   },
   {
     "id": 120,

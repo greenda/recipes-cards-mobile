@@ -23,12 +23,33 @@ const RECIPE_TYPE_MAP = {
   [RECIPE_TYPE.BREAKFAST]: 'Завтраки',
 };
 
-function toTodoist() {
+let selectedIngredients = [];
+let selectedRecipeType;
+
+async function toTodoist() {
   const api = new TodoistApi("b6d07921bc749d4f50040963cd1bc13a51fd33e2")
 
-  api.getProjects()
-      .then((projects) => console.log(projects))
-      .catch((error) => console.log(error))
+  // await api.getProjects()
+  //     .then((projects) => console.log(projects))
+  //     .catch((error) => console.log(error))
+
+  // TODO в константу
+  const result = await Promise.all(selectedIngredients.map(ingredient => {
+    return api.addTask({ content: ingredient, projectId: "2290188609" })
+      .then(
+        (task) => console.log(task)
+      )
+      .catch(
+        (error) => console.log(error)
+      )
+  }));
+
+  console.log('%c%s', 'background: cadetblue; padding: 8px;', JSON.stringify(result));
+
+  // TODO всплывашки, что всё получилось
+
+  // "2290188609"
+  console.log('%c%s', 'background: cadetblue; padding: 8px;', JSON.stringify(selectedIngredients));
 }
 
 function init() {
@@ -48,10 +69,14 @@ function init() {
 
   function clearScreen() {
     pageContainer.textContent = '';
+
+    selectedIngredients = [];
   }
 
   function renderMenu() {
     clearScreen();
+
+    selectedRecipeType = null;
 
     const pageTitle = document.createElement('span');
     pageContainer.appendChild(pageTitle);
@@ -87,7 +112,7 @@ function init() {
         type: RECIPE_TYPE.DESSERT,
         color: 'caramel_light',
       },
-    ].forEach(({ type, color, href}) => {
+    ].forEach(({ type, color}) => {
       const sectionButton = document.createElement('button');
 
       sectionButton.textContent = RECIPE_TYPE_MAP[type];
@@ -102,9 +127,10 @@ function init() {
   }
 
   function renderRecipeIngredientsList(event) {
-    clearScreen();
-
     const recipeId = event.currentTarget.attributes.id.nodeValue;
+    console.log('%c%s', 'background: cadetblue; padding: 8px;', recipeId);
+
+    clearScreen();
 
     const recipe = RECIPES.find(recipe => recipe.id === +recipeId);
     const ingredientds = recipe.ingredients || [];
@@ -112,7 +138,12 @@ function init() {
     if (!ingredientds.length) throw new Error('Рецепт не найден');
 
     const section = document.createElement('div');
-    section.className = 'section recipe';
+    section.className = 'section';
+
+    const recipeElement = document.createElement('div');
+    recipeElement.className = 'recipe';
+
+    section.appendChild(recipeElement);
 
     const titleContainer = document.createElement('div');
     // TODO разобраться со вложенностью элементов
@@ -121,8 +152,13 @@ function init() {
 
     ingredientds.forEach(ingredient => {
       const ingredientElement = document.createElement('span');
-      ingredientElement.className = 'recipe__ingredient';
-      ingredientElement.innerText = INGREDIENTS.find(value => value.id === ingredient.id).name;
+      const ingredientEntity = INGREDIENTS.find(value => value.id === ingredient.ingredientId)
+      const ingredientName = ingredientEntity.name;
+      ingredientElement.innerText = ingredientName;
+
+      const ingredientContainerElement = document.createElement('div');
+      ingredientContainerElement.className = 'recipe__ingredient';
+      ingredientContainerElement.appendChild(ingredientElement);
 
       const amountElement = document.createElement('span');
       amountElement.className = 'recipe__amount';
@@ -130,25 +166,76 @@ function init() {
 
       const unitElement = document.createElement('span');
       unitElement.className = 'recipe__unit';
-      unitElement.innerText = UNITS.find(value => value.id === ingredient.unitId).name;
+      const unitName = UNITS.find(value => value.id === ingredient.unitId).name;
+      const processedUnitName = `${ingredient.index ? unitName[ingredient.index] : unitName}`
+      unitElement.innerText = processedUnitName;
+
+      const checkboxElement = document.createElement('input');
+      checkboxElement.type = 'checkbox';
+      const valueString =`${ingredientName} ${unitName !== 'по вкусу' ? `(${ingredient.amountOf} ${processedUnitName})` : ''}`;
+      checkboxElement.id = valueString;
+      checkboxElement.className = 'recipe__checkbox';
+
+      if (!ingredientEntity.notDefaultSelect) {
+        checkboxElement.checked = true;
+        selectedIngredients.push(valueString);
+      }
+
+      checkboxElement.onclick = event => {
+        const checkbox = event.currentTarget;
+        const ingredient = checkbox.attributes.id.nodeValue;
+
+        if (checkbox.checked) {
+          selectedIngredients.push(ingredient);
+        } else {
+          selectedIngredients = selectedIngredients.filter(value => value !== ingredient);
+        }
+      }
+
+      const amountUnitElement = document.createElement('div');
+      amountUnitElement.className = 'recipe__amount-unit';
+      amountUnitElement.appendChild(checkboxElement);
+
+      if (ingredient.amountOf) {
+        amountUnitElement.appendChild(amountElement);
+      }
+
+      // В переменную; возможно нужен список таких значений
+      if (unitName !== 'по вкусу') {
+        amountUnitElement.appendChild(unitElement);
+      }
 
       const rowElement = document.createElement('div');
       rowElement.className = 'recipe__row';
-      rowElement.appendChild(amountElement);
-      rowElement.appendChild(unitElement);
-      rowElement.appendChild(ingredientElement);
+      rowElement.appendChild(amountUnitElement);
+      rowElement.appendChild(ingredientContainerElement);
 
-      section.appendChild(rowElement);
+      recipeElement.appendChild(rowElement);
     })
+
+    const backButton = document.createElement('button');
+    backButton.innerText = 'Назад';
+    // TODO возвращаться в раздел, а не в меню
+    backButton.onclick = () => renderSection({ currentTarget: { attributes: { type: { nodeValue: selectedRecipeType } } } });
+    backButton.className = 'type-container type-container_caramel_dark';
+
+    const toTodoistButton = document.createElement('button');
+    toTodoistButton.innerText = 'В Todoist';
+    toTodoistButton.onclick = toTodoist;
+    toTodoistButton.className = 'to-todoist-button type-container type-container_caramel_light';
 
     pageContainer.appendChild(titleContainer);
     pageContainer.appendChild(section);
+    section.appendChild(toTodoistButton);
+    section.appendChild(backButton);
   }
 
   function renderSection(event) {
     clearScreen();
 
     const recipeType = event.currentTarget.attributes.type.nodeValue;
+
+    selectedRecipeType = recipeType;
 
     const recipes = RECIPES.filter(({ type }) => type === recipeType );
 
@@ -193,6 +280,7 @@ function init() {
   }
 
   renderMenu();
+  // renderRecipeIngredientsList({ currentTarget: { attributes: { id: { nodeValue: 1 } } } })
 }
 
 init();
