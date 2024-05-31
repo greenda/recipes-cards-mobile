@@ -21,7 +21,7 @@ body {
 .page {
   border: 1px solid lightgray;
   width: 358px;
-  height: 730px;
+  height: 731px;
 }
 
 .page .page__title {
@@ -195,4 +195,86 @@ body {
   background-color: #E3A026;
 }
 
+
+/* Меню */
+
+.menu .page__title {
+  margin: 0;
+}
+
+.menu .tabs-container {
+  padding: 0px 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.background {
+  width: 358px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.background .day-div {
+  position: relative;
+  width: 100px;
+  height: 120px;
+}
+
+.background-title {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  width: 30px;
+  line-height: 46px;
+}
+
+/* TODO сделать модификаторами */
+.breakfast-background, .diner-background {
+  background-color: rgba(174, 187, 148, 0.5);
+}
+
+.lanch-background {
+  background-color: #AEBB94;
+}
+
+.prepare-background {
+  background-color: rgba(248, 174, 41, 0.2);
+}
+
+.buy-background {
+  background-color: rgba(248, 174, 41, 0.4);
+}
+
+.schedule {
+  height: 488px;
+  overflow-x: hidden;
+}
+
+.day-div {
+  border: 1px solid #E5E5E5;
+  border-top: none;
+  border-bottom: none;
+}
+
+.prepare-background .day-div, .buy-background .day-div {
+  border-color: rgba(183, 108, 73, 0.4);
+}
+
+.arrow-button {
+  width: 16px;
+  height: 488px;
+  position: absolute;
+  top: 66px;
+  z-index: 1;
+  background-color: white;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.arrow-button_left {
+  left: 16px;
+}
+
+.arrow-button_right {
+  left: 333px;
+}
 

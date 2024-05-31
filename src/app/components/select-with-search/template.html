@@ -1,0 +1,120 @@
+<template id="select-with-search">
+  <!-- TODO сделать это как-то через пропсы -->
+  <style>
+    @import "./menu.css";
+  </style>
+  <style>
+    .select__container {
+      max-height: calc(55px * 6);
+      overflow-y: scroll;
+      position: absolute;
+      background: white;
+      display: block;
+      border: 1px solid #E5E5E5;
+      width: 210px;
+      box-shadow: 0px 2px 8px 0px rgb(34 60 80 / 20%);
+      z-index: 10;
+    }
+
+    .select__option {
+      padding: 8px;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .select__option:hover {
+      background-color: #F8AE29;
+    }
+
+    .select__field {
+      display: grid;
+      grid-template-columns: 210px;
+      gap: 4px;
+      align-items: center;
+      position: relative;
+    }
+
+    .select:focus-visible {
+      outline: 1px solid rgb(110, 0, 0);
+      border: 1px solid rgb(52, 4, 4);
+    }
+
+    #s1:focus-visible {
+      outline: 1px solid #1a1d75;
+    }
+
+    button:focus-visible {
+      outline: 1px solid #B0B0B0;
+    }
+
+    .select__input {
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #d9d9d9;
+      font-size: 16px;
+      /* padding-right: 24px; */
+    }
+
+    .select__input:focus-visible {
+      outline: 1px solid #B0B0B0;
+    }
+
+    .select__input_short {
+      width: 60px;
+    }
+
+    .select__hide-button {
+      position: absolute;
+      background-image: url(./hide-select-button.svg);
+      background-color: transparent;
+      border: none;
+      height: 36px;
+      width: 30px;
+      left: 180px;
+      background-repeat: no-repeat;
+      background-position-y: 16px;
+      background-position-x: 8px;
+      padding: 0;
+    }
+
+    .select__container.hide {
+      display: none;
+    }
+
+    .section input {
+      color: red;
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #d9d9d9;
+      font-size: 16px;
+      padding-right: 24px;
+    }
+
+    .date-input_short input {
+      width: 44px;
+    }
+
+    .date-input_short button {
+      left: 32px;
+    }
+
+    .date-input_short + .select__container{
+      width: 68px;
+    }
+
+    .select__field.date-input_short {
+      grid-template-columns: 62px;
+    }
+  </style>
+
+  <!-- TODO сделать это через b() -->
+  <div class="select">
+    <div class="select__field">
+      <input type="text" class="select__input" />
+      <button class="select__hide-button"></button>
+    </div>
+    <div class="select__container  hide">
+    </div>
+  </div>
+</template>
