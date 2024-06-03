@@ -1,9 +1,8 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import weekday from 'dayjs/plugin/weekday';
-import { schedule as scheduleMock } from '../../mock/schedule.js';
 import { CustomElement } from '../../utils/custom-element';
 import { getWeekDay } from '../../utils';
 
@@ -21,6 +20,29 @@ class Schedule extends HTMLElement {
 
   schedule: CustomElement;
   scheduleContainer: CustomElement;
+
+  // TODO вынести в тип
+  scheduleEntites: {
+    id: number,
+    from: string,
+    to: string,
+    meal: string,
+    type: string,
+    recipe_id?: number,
+    description?: string,
+  }[];
+
+  selectedDay: {
+    date: string;
+    meal: string;
+  };
+
+  updateDay: {
+    id: number;
+    type: 'left' | 'right';
+  }
+
+  onDayClickHundler: (date: string, meal: string) => void;
 
   constructor() {
     super();
@@ -42,12 +64,20 @@ class Schedule extends HTMLElement {
       this.firstDate = dayjs(newValue, DATE_FORMAT.FULL);
       this.secondDate = this.firstDate.clone().add(1, 'day');
       this.thirdDate = this.firstDate.clone().add(2, 'day');
+    }
+
+    if (name === 'schedule' && newValue) {
+      this.scheduleEntites = JSON.parse(newValue);
+    }
+
+    if (this.firstDate && this.scheduleEntites) {
+      this.clear();
 
       this.renderSchedule();
     }
   }
 
-  static get observedAttributes() { return ['current-date']; }
+  static get observedAttributes() { return ['current-date', 'schedule', 'ondayclick']; }
 
   addMealElements = (meal, title, scheduleContainer) => {
     // TODO переименовать элементы
@@ -80,6 +110,10 @@ class Schedule extends HTMLElement {
     const thirdDiv = document.createElement('div');
     thirdDiv.className = 'day-div third-div';
     thirdDiv.id = `date-${this.firstDate.add(2, 'day').format(DATE_FORMAT.DEFAULT)}`;
+
+    firstDiv.addEventListener('click', this.onDayClick);
+    secondDiv.addEventListener('click', this.onDayClick);
+    thirdDiv.addEventListener('click', this.onDayClick);
 
     mealBackground.appendChildren([firstDiv, secondDiv, thirdDiv]);
   }
@@ -169,7 +203,7 @@ class Schedule extends HTMLElement {
     const dayLineTextContainer = new CustomElement('div', 'day-line__text');
     dayLineTextContainer.appendChild(textLineElement);
 
-    const processedSchedule = this.processSchedule(scheduleMock);
+    const processedSchedule = this.processSchedule(this.scheduleEntites);
 
     Object.keys(processedSchedule).forEach(id => {
       const { dateFrom, dateTo, left, right, withoutArrows, meal, type, description } = processedSchedule[id];
@@ -195,13 +229,16 @@ class Schedule extends HTMLElement {
         text.setStyle(`width: 300px; left: 32px; ${typeOffset}`);
         mealContainer.appendChild(text.getElement());
 
+        text.setAttribute('id', id);
+
         return;
       }
 
       if (left && right) {
         const leftOffset = dateFrom.isSame(this.secondDate) ? 'left: 132px;' : dateFrom.isSame(this.thirdDate) ? 'left: 232px;' : 'left: 32px;';
         const widthLeftOffset = dateFrom.isSame(this.secondDate) ? 1 : dateFrom.isSame(this.thirdDate) ? 2 : 0;
-        const width = 3 - widthLeftOffset;
+        const widthRightOffset = dateTo.isSame(this.secondDate) ? 1 : dateTo.isSame(this.firstDate) ? 2 : 0;
+        const width = 3 - widthLeftOffset - widthRightOffset;
         text.setStyle(`width: ${width * 100}px; ${leftOffset} ${typeOffset}`);
 
         const leftArrow = dayArrow.cloneNode();
@@ -210,7 +247,15 @@ class Schedule extends HTMLElement {
         text.appendChild(leftArrow);
         text.appendChild(rightArrow);
 
+        leftArrow.getElement().addEventListener('click', this.onDayArrowClick);
+        rightArrow.getElement().addEventListener('click', this.onDayArrowClick);
+
         mealContainer.appendChild(text.getElement());
+
+        leftArrow.setAttribute('type', 'left');
+        rightArrow.setAttribute('type', 'right');
+
+        text.setAttribute('id', id);
 
         return;
       }
@@ -228,6 +273,12 @@ class Schedule extends HTMLElement {
         text.appendChild(leftArrow);
         mealContainer.appendChild(text.getElement());
 
+        leftArrow.getElement().addEventListener('click', this.onDayArrowClick);
+
+        leftArrow.setAttribute('type', 'left');
+
+        text.setAttribute('id', id);
+
         return;
       }
 
@@ -240,6 +291,12 @@ class Schedule extends HTMLElement {
         text.appendChild(rightArrow);
         mealContainer.appendChild(text.getElement());
 
+        rightArrow.getElement().addEventListener('click', this.onDayArrowClick);
+
+        rightArrow.setAttribute('type', 'right');
+
+        text.setAttribute('id', id);
+
         return;
       }
     });
@@ -251,8 +308,13 @@ class Schedule extends HTMLElement {
       const dateTo = dayjs(to, DATE_FORMAT.FULL);
 
       switch(true) {
+        case dateFrom.isSame(dateTo)
+          && dateFrom.isSameOrAfter(this.firstDate)
+          && dateFrom.isSameOrBefore(this.thirdDate):
+          return { ...acc, [id]: { left: true, right: true, dateFrom, dateTo, ...rest } };
+
         case dateFrom.isSameOrAfter(this.firstDate) && dateTo.isSameOrBefore(this.thirdDate):
-          return { ...acc, [id]: { left: 'true', right: true, dateFrom, dateTo, ...rest } };
+          return { ...acc, [id]: { left: true, right: true, dateFrom, dateTo, ...rest } };
 
         case dateFrom.isSameOrBefore(this.firstDate)
           && dateTo.isSameOrAfter(this.firstDate)
@@ -281,6 +343,29 @@ class Schedule extends HTMLElement {
     } else {
       this.updateSchedule(this.firstDate.add(1, 'day'));
     }
+  }
+
+  onDayClick = (event: PointerEvent) => {
+    const currentTarget = event.currentTarget;
+    const id = currentTarget.attributes.id.nodeValue;
+    const meal = currentTarget.parentElement.attributes.id.nodeValue;
+
+    this.selectedDay = { date: id.substring(5, id.length), meal };
+
+    // this.onDayClickHundler(id, meal);
+  }
+
+  onDayArrowClick = (event: PointerEvent) => {
+    const currentTarget = event.currentTarget;
+
+    const type = currentTarget.attributes.type.nodeValue;
+    const id = +currentTarget.parentElement.attributes.id.nodeValue;
+
+    const newEvent = new Event('update-day');
+
+    this.updateDay = { id, type };
+
+    this.dispatchEvent(newEvent);
   }
 
   updateSchedule(newCurrentDate) {

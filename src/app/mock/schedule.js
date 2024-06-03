@@ -45,12 +45,12 @@ export const schedule = [
       description: 'салат со свеклой',
     },
     {
-      id: 4,
+      id: 5,
       from: '24.01.24',
       to: '24.01.24',
       meal: 'breakfast',
       type: 'salad',
       recipeId: '',
-      description: 'салат со свеклой',
+      description: 'салат с перцем',
     }
   ];

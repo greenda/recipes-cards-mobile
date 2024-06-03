@@ -1,6 +1,7 @@
 import * as selectWithSearchTemplate from '../../app/components/select-with-search/template.html';
 import * as tabTemplate from '../../app/components/custom-tab/template.html';
 import * as scheduleTemplate from '../../app/components/schedule/template.html';
+import * as formTabTemplate from '../../app/components/form-tab/template.html';
 
 // TODO узнать про res.text, почему он ассинхронный
 const fetchFile = file => fetch(file)
@@ -13,6 +14,7 @@ export const initTemplates = async () => {
   document.querySelector('.page').insertAdjacentHTML('beforebegin', selectWithSearchTemplate.default);
   document.querySelector('.page').insertAdjacentHTML('beforebegin', tabTemplate.default);
   document.querySelector('.page').insertAdjacentHTML('beforebegin', scheduleTemplate.default);
+  document.querySelector('.page').insertAdjacentHTML('beforebegin', formTabTemplate.default);
 }
 
 const getSelectOptions = (array, idField, labelField) => (

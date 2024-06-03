@@ -9,6 +9,11 @@ import { initTemplates } from './app/utils';
 
 import './index.css';
 
+import { Fetcher } from './app/utils/fetcher';
+import { CustomElement } from "./app/utils/custom-element";
+
+import dayjs from 'dayjs';
+
 const RECIPE_TYPE = {
   FIRST_COURSE: 'first-course',
   SECOND_COURSE: 'secound-course',
@@ -27,6 +32,8 @@ const RECIPE_TYPE_MAP = {
   [RECIPE_TYPE.DESSERT]: 'Десерты',
   [RECIPE_TYPE.BREAKFAST]: 'Завтраки',
 };
+
+const DATE_FORMAT = { FULL: 'DD.MM.YY', DEFAULT: 'DD-MM-YY' };
 
 let selectedIngredients = [];
 let selectedRecipeType;
@@ -290,6 +297,24 @@ function init() {
 
 // init();
 
+let selectedDay;
+const fetcher = new Fetcher();
+
+function onAdd() {
+  fetcher.addDay({
+    from: selectedDay.date,
+    to: selectedDay.date,
+    meal: selectedDay.meal,
+    type: 'second-course',
+    description: document.querySelector('.hundle-form__description').value,
+  });
+
+  const scheduleEntity = fetcher.getSchedule();
+
+  const schedule = document.querySelector('custom-schedule');
+  schedule.setAttribute('schedule', JSON.stringify(scheduleEntity));
+}
+
 async function menuInit() {
   await initTemplates();
 
@@ -305,7 +330,88 @@ async function menuInit() {
   menuContainer.appendChild(pageTitle);
   menuContainer.appendChild(schedule);
 
+  const scheduleEntity = await fetcher.getSchedule();
+
+  // TODO выставлять атрибуты при создании
   schedule.setAttribute('current-date', '20.01.24');
+  schedule.setAttribute('schedule', JSON.stringify(scheduleEntity));
+
+  schedule.addEventListener('click', onDayClick);
+  schedule.addEventListener('update-day', onDayUpdate);
+
+  const secondCourseTab = new CustomElement('form-tab');
+  const garnishTab = new CustomElement('form-tab');
+  const salad = new CustomElement('form-tab');
+
+  const horizontalLine = new CustomElement('div', 'horizontal-line');
+
+  const formTabs = new CustomElement('div', 'hundle-form__tabs');
+  formTabs.appendChild(secondCourseTab);
+  formTabs.appendChild(garnishTab);
+  formTabs.appendChild(salad);
+
+  const addText = new CustomElement('span', 'hundle-form__add-text');
+  addText.getElement().innerText = 'Добавить:'
+
+  const searchField = new CustomElement('select-with-search', 'hundle-form__select');
+  const addButton = new CustomElement('button', 'hundle-form__add-button');
+  addButton.getElement().innerText = 'Добавить';
+  addButton.getElement().addEventListener('click', onAdd);
+
+  const description = new CustomElement('input', 'hundle-form__description');
+
+  const searchFieldContainer = new CustomElement('div', 'hundle-form__search-container');
+  searchFieldContainer.appendChild(searchField);
+  searchFieldContainer.appendChild(addButton);
+
+  const formContent = new CustomElement('div', 'hundle-form__content');
+  formContent.appendChild(addText);
+  formContent.appendChild(searchFieldContainer);
+  formContent.appendChild(description);
+
+  searchField.setAttribute('options', JSON.stringify([{ value: 1, label: 'label'}]));
+
+  const hunduleForm = new CustomElement('div', 'hundle-form');
+  hunduleForm.appendChild(horizontalLine);
+  hunduleForm.appendChild(formTabs);
+  hunduleForm.appendChild(formContent);
+
+  menuContainer.appendChild(hunduleForm.getElement());
+
+  // TODO сделать выделение цветом выбранного таба
+  secondCourseTab.setAttribute('text', 'второе');
+  garnishTab.setAttribute('text', 'гарнир');
+  salad.setAttribute('text', 'салат');
+}
+
+function onDayClick(event: PointerEvent) {
+  selectedDay = event.currentTarget.selectedDay;
+}
+
+function onDayUpdate(event: PointerEvent) {
+  const updatedDay = event.currentTarget.updateDay;
+  let schedule = fetcher.getSchedule();
+
+  const updatedEntity = schedule.find(({ id }) => id === updatedDay.id);
+
+  fetcher.updateDay({
+    ...updatedEntity,
+    ...(updatedDay.type === 'left' && {
+      from: dayjs(updatedEntity.from, DATE_FORMAT.DEFAULT)
+        .subtract(1, 'day')
+        .format(DATE_FORMAT.FULL)
+    }),
+    ...(updatedDay.type === 'right' && {
+      to: dayjs(updatedEntity.to, DATE_FORMAT.DEFAULT)
+        .add(1, 'day')
+        .format(DATE_FORMAT.FULL)
+    }),
+  });
+
+  schedule = fetcher.getSchedule();
+
+  const scheduleElement = document.querySelector('custom-schedule');
+  scheduleElement.setAttribute('schedule', JSON.stringify(schedule));
 }
 
 menuInit();
