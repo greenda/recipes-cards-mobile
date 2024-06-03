@@ -2,6 +2,11 @@ import { TodoistApi } from "@doist/todoist-api-typescript";
 import { ingredients } from './ingredients.js';
 import { units } from './units';
 import { recipes } from './recipes.js';
+
+import './app/components/schedule/index.ts';
+
+import { initTemplates } from './app/utils';
+
 import './index.css';
 
 const RECIPE_TYPE = {
@@ -283,7 +288,27 @@ function init() {
   // renderRecipeIngredientsList({ currentTarget: { attributes: { id: { nodeValue: 1 } } } })
 }
 
-init();
+// init();
+
+async function menuInit() {
+  await initTemplates();
+
+  const menuContainer = document.querySelector('.menu');
+
+  const pageTitle = document.createElement('span');
+  pageTitle.className = "page__title";
+  pageTitle.innerText = "Меню";
+
+  const schedule = document.createElement('custom-schedule');
+  console.log('%c%s', 'background: cadetblue; padding: 8px;', 'init');
+
+  menuContainer.appendChild(pageTitle);
+  menuContainer.appendChild(schedule);
+
+  schedule.setAttribute('current-date', '20.01.24');
+}
+
+menuInit();
 
   // const recipe = _recipes__WEBPACK_IMPORTED_MODULE_3__.RECIPES.find(({    id  }) => id === cardsNumber);
   // const tasks = recipe.ingredients.reduce((acc, ingredient) => {

@@ -34,7 +34,6 @@ class SelectWithSearch extends HTMLElement {
   static get observedAttributes() { return ['options', 'mix']; }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    // console.log('%c%s', 'background: cadetblue; padding: 8px;', 'attributeChangedCallback ' + name);
     if (name === 'options') {
       this.setOptions(JSON.parse(newValue), this.popup);
 

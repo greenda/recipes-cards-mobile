@@ -7,8 +7,6 @@ class CustomTab extends HTMLElement {
 
     const day = template.getAttribute('day');
 
-    console.log('%c%s', 'background: cadetblue; padding: 8px;', day);
-
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.appendChild(templateContent);
 
@@ -16,7 +14,6 @@ class CustomTab extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log('%c%s', 'background: cadetblue; padding: 8px;', 'attributeChangedCallback');
     if (name === 'day') {
       this.tabText.querySelector('span:nth-child(1)').innerText = newValue;
     }

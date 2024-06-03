@@ -12,7 +12,6 @@
     Parse.initialize("smBFgQBOXa4EP10MMmqr4iZlxMYy9pAjBIVUqFPz", "ZIjDPmi3BFp82lQGWLZcTgvoc9RkKWC8THQGc0DF"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
     Parse.serverURL = "https://parseapi.back4app.com/";
   </script> -->
-  <script src="./src/app/utils/index.js"></script>
   <script type="module" src="./src/app/components/select-with-search/index.js"></script>
   <script type="module" src="./src/app/components/custom-tab/index.js"></script>
 </head>
@@ -20,97 +19,8 @@
 <body>
   <div class="page">
     <div class="menu">
-
     </div>
   </div>
-
-  <script>
-    const init = async () => {
-      await initTemplates();
-
-      const menuContainer = document.querySelector('.menu');
-
-      const pageTitle = document.createElement('span');
-      pageTitle.className = "page__title";
-      pageTitle.innerText = "Меню";
-
-      menuContainer.appendChild(pageTitle);
-
-      // const ingredientsSelect = document.createElement('select-with-search');
-      // menuContainer.appendChild(ingredientsSelect);
-
-      const tabMounday = document.createElement('custom-tab');
-      const tabTuesday = document.createElement('custom-tab');
-      const tabWednesday = document.createElement('custom-tab');
-
-      const tabsContainer = document.createElement('div');
-      tabsContainer.className = "tabs-container";
-
-      tabsContainer.appendChild(tabMounday);
-      tabsContainer.appendChild(tabTuesday);
-      tabsContainer.appendChild(tabWednesday);
-
-      tabMounday.setAttribute('day', 'Пн');
-      tabMounday.setAttribute('date', '22.01.24');
-      tabTuesday.setAttribute('day', 'Вт');
-      tabTuesday.setAttribute('date', '23.01.24');
-      tabWednesday.setAttribute('day', 'Ср');
-      tabWednesday.setAttribute('date', '24.01.24');
-
-      const scheduleContainer = document.createElement('div');
-      scheduleContainer.className = "schedule";
-
-      const addMealElements = (meal, title) => {
-        // TODO переименовать элементы
-        const breakfastBackground = document.createElement('div');
-        breakfastBackground.className = `background ${meal}-background`;
-
-        const breakfastTitle = document.createElement('span');
-        breakfastTitle.innerText = title;
-
-        const breakfastTitleContainer = document.createElement('div');
-        breakfastTitleContainer.className = "background-title";
-
-        breakfastTitleContainer.appendChild(breakfastTitle);
-
-        breakfastBackground.appendChild(breakfastTitleContainer);
-        scheduleContainer.appendChild(breakfastBackground);
-
-        const firstDiv = document.createElement('div');
-        firstDiv.className = 'day-div first-div';
-        const secondDiv = document.createElement('div');
-        secondDiv.className = 'day-div first-div';
-        const thirdDiv = document.createElement('div');
-        thirdDiv.className = 'day-div third-div';
-
-        breakfastBackground.appendChild(firstDiv);
-        breakfastBackground.appendChild(secondDiv);
-        breakfastBackground.appendChild(thirdDiv);
-      }
-
-      addMealElements('breakfast', 'завтрак');
-      addMealElements('lanch', 'обед');
-      addMealElements('diner', 'ужин');
-      addMealElements('prepare', 'приготовить');
-      addMealElements('buy', 'купить');
-
-      const leftArrowButton = document.createElement('div');
-      leftArrowButton.className = 'arrow-button arrow-button_left';
-
-      const rightArrowButton = document.createElement('div');
-      rightArrowButton.className = 'arrow-button arrow-button_right';
-
-      scheduleContainer.appendChild(leftArrowButton);
-      scheduleContainer.appendChild(rightArrowButton);
-
-      menuContainer.appendChild(tabsContainer);
-      menuContainer.appendChild(scheduleContainer);
-    }
-
-    (async () => {
-      await init();
-    })();
-  </script>
 
   <!-- <button id="createButton"></button>
   -->
