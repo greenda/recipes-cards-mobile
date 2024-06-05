@@ -351,8 +351,6 @@ class Schedule extends HTMLElement {
     const meal = currentTarget.parentElement.attributes.id.nodeValue;
 
     this.selectedDay = { date: id.substring(5, id.length), meal };
-
-    // this.onDayClickHundler(id, meal);
   }
 
   onDayArrowClick = (event: PointerEvent) => {

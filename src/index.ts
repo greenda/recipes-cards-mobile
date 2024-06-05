@@ -3,6 +3,10 @@ import { ingredients } from './ingredients.js';
 import { units } from './units';
 import { recipes } from './recipes.js';
 
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+
 import './app/components/schedule/index.ts';
 
 import { initTemplates } from './app/utils';
@@ -14,9 +18,13 @@ import { CustomElement } from "./app/utils/custom-element";
 
 import dayjs from 'dayjs';
 
+dayjs.extend(customParseFormat);
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter);
+
 const RECIPE_TYPE = {
   FIRST_COURSE: 'first-course',
-  SECOND_COURSE: 'secound-course',
+  SECOND_COURSE: 'second-course',
   GARNISH: 'garnish',
   SALAD: 'salad',
   DESSERT: 'dessert',
@@ -298,6 +306,9 @@ function init() {
 // init();
 
 let selectedDay;
+let selectedTab;
+let scheduleEntity = [];
+
 const fetcher = new Fetcher();
 
 function onAdd() {
@@ -309,7 +320,7 @@ function onAdd() {
     description: document.querySelector('.hundle-form__description').value,
   });
 
-  const scheduleEntity = fetcher.getSchedule();
+  scheduleEntity = fetcher.getSchedule();
 
   const schedule = document.querySelector('custom-schedule');
   schedule.setAttribute('schedule', JSON.stringify(scheduleEntity));
@@ -325,12 +336,11 @@ async function menuInit() {
   pageTitle.innerText = "Меню";
 
   const schedule = document.createElement('custom-schedule');
-  console.log('%c%s', 'background: cadetblue; padding: 8px;', 'init');
 
   menuContainer.appendChild(pageTitle);
   menuContainer.appendChild(schedule);
 
-  const scheduleEntity = await fetcher.getSchedule();
+  scheduleEntity = await fetcher.getSchedule();
 
   // TODO выставлять атрибуты при создании
   schedule.setAttribute('current-date', '20.01.24');
@@ -339,53 +349,15 @@ async function menuInit() {
   schedule.addEventListener('click', onDayClick);
   schedule.addEventListener('update-day', onDayUpdate);
 
-  const secondCourseTab = new CustomElement('form-tab');
-  const garnishTab = new CustomElement('form-tab');
-  const salad = new CustomElement('form-tab');
 
-  const horizontalLine = new CustomElement('div', 'horizontal-line');
-
-  const formTabs = new CustomElement('div', 'hundle-form__tabs');
-  formTabs.appendChild(secondCourseTab);
-  formTabs.appendChild(garnishTab);
-  formTabs.appendChild(salad);
-
-  const addText = new CustomElement('span', 'hundle-form__add-text');
-  addText.getElement().innerText = 'Добавить:'
-
-  const searchField = new CustomElement('select-with-search', 'hundle-form__select');
-  const addButton = new CustomElement('button', 'hundle-form__add-button');
-  addButton.getElement().innerText = 'Добавить';
-  addButton.getElement().addEventListener('click', onAdd);
-
-  const description = new CustomElement('input', 'hundle-form__description');
-
-  const searchFieldContainer = new CustomElement('div', 'hundle-form__search-container');
-  searchFieldContainer.appendChild(searchField);
-  searchFieldContainer.appendChild(addButton);
-
-  const formContent = new CustomElement('div', 'hundle-form__content');
-  formContent.appendChild(addText);
-  formContent.appendChild(searchFieldContainer);
-  formContent.appendChild(description);
-
-  searchField.setAttribute('options', JSON.stringify([{ value: 1, label: 'label'}]));
-
-  const hunduleForm = new CustomElement('div', 'hundle-form');
-  hunduleForm.appendChild(horizontalLine);
-  hunduleForm.appendChild(formTabs);
-  hunduleForm.appendChild(formContent);
-
-  menuContainer.appendChild(hunduleForm.getElement());
-
-  // TODO сделать выделение цветом выбранного таба
-  secondCourseTab.setAttribute('text', 'второе');
-  garnishTab.setAttribute('text', 'гарнир');
-  salad.setAttribute('text', 'салат');
+  renderForm();
 }
 
 function onDayClick(event: PointerEvent) {
   selectedDay = event.currentTarget.selectedDay;
+  selectedTab = null;
+
+  renderForm();
 }
 
 function onDayUpdate(event: PointerEvent) {
@@ -408,10 +380,188 @@ function onDayUpdate(event: PointerEvent) {
     }),
   });
 
-  schedule = fetcher.getSchedule();
+  scheduleEntity = fetcher.getSchedule();
 
   const scheduleElement = document.querySelector('custom-schedule');
-  scheduleElement.setAttribute('schedule', JSON.stringify(schedule));
+  scheduleElement.setAttribute('schedule', JSON.stringify(scheduleEntity));
+}
+
+function getDayData() {
+  if (!selectedDay) return null;
+
+  const selectedDate = dayjs(selectedDay.date, DATE_FORMAT.DEFAULT);
+
+  const filteredSchedule = scheduleEntity.filter(({ meal, from, to }) => selectedDay.meal === meal
+    && dayjs(from, DATE_FORMAT.FULL).isSameOrBefore(selectedDate)
+    && dayjs(to, DATE_FORMAT.FULL).isSameOrAfter(selectedDate)
+  );
+
+  return {
+    secondCourse: filteredSchedule.find(({ type }) => type === 'second-course'),
+    garnis: filteredSchedule.find(({ type }) => type === 'garnish'),
+    salad: filteredSchedule.find(({ type }) => type === 'salad'),
+  };
+}
+
+function renderForm() {
+  const exitedForm = document.querySelector('.hundle-form');
+
+  if (exitedForm) {
+    exitedForm.innerHTML = '';
+
+    exitedForm.parentElement.removeChild(exitedForm);
+  }
+
+  const hunduleForm = new CustomElement('div', 'hundle-form');
+
+  const findedEntityes = getDayData();
+
+  if ((selectedDay && !findedEntityes.secondCourse && !findedEntityes.garnis && !findedEntityes.salad)
+    || (selectedDay && selectedTab && !findedEntityes[selectedTab])
+   ) {  
+    const horizontalLine = new CustomElement('div', 'horizontal-line');
+
+    const formTabs = getCourseTabs();;
+
+    const addText = new CustomElement('span', 'hundle-form__add-text');
+    addText.getElement().innerText = 'Добавить:'
+
+    const searchField = new CustomElement('select-with-search', 'hundle-form__select');
+    const addButton = new CustomElement('button', 'hundle-form__add-button');
+    addButton.getElement().innerText = 'Добавить';
+    addButton.getElement().addEventListener('click', onAdd);
+
+    const description = new CustomElement('input', 'hundle-form__description');
+
+    const searchFieldContainer = new CustomElement('div', 'hundle-form__search-container');
+    searchFieldContainer.appendChild(searchField);
+    searchFieldContainer.appendChild(addButton);
+
+    const formContent = new CustomElement('div', 'hundle-form__content');
+    formContent.appendChild(addText);
+    formContent.appendChild(searchFieldContainer);
+    formContent.appendChild(description);
+
+    searchField.setAttribute('options', JSON.stringify([{ value: 1, label: 'label'}]));
+
+    hunduleForm.appendChild(horizontalLine);
+    hunduleForm.appendChild(formTabs);
+    hunduleForm.appendChild(formContent);
+
+    const menuContainer = document.querySelector('.menu');
+
+    menuContainer.appendChild(hunduleForm.getElement());
+
+    if (selectedTab) {
+      document.querySelector(`#${selectedTab}`).classList.add('form-tab_active');
+    }
+
+    return;
+  }
+
+  if (selectedDay && selectedTab && findedEntityes[selectedTab]) {
+    renderCourseTab(hunduleForm, findedEntityes[selectedTab]);
+
+    return;
+  }
+
+  if (selectedDay && findedEntityes.secondCourse) {
+    selectedTab = 'second-course';
+    renderCourseTab(hunduleForm, findedEntityes.secondCourse);
+
+    return;
+  }
+
+  if (selectedDay && findedEntityes.garnis) {
+    selectedTab = 'garnish';
+    renderCourseTab(hunduleForm, findedEntityes.garnis);
+
+    return;
+  }
+
+  if (selectedDay && findedEntityes.salad) {
+    selectedTab = 'salad';
+    renderCourseTab(hunduleForm, findedEntityes.salad);
+  }
+}
+
+function getCourseTabs() {
+  const formTabs = new CustomElement('div', 'hundle-form__tabs');
+
+  const secondCourseTab = new CustomElement('form-tab');
+  const garnishTab = new CustomElement('form-tab');
+  const saladTab = new CustomElement('form-tab');
+
+  secondCourseTab.getElement().addEventListener('click', changeCourseTab);
+  garnishTab.getElement().addEventListener('click', changeCourseTab);
+  saladTab.getElement().addEventListener('click', changeCourseTab);
+
+  formTabs.appendChild(secondCourseTab);
+  formTabs.appendChild(garnishTab);
+  formTabs.appendChild(saladTab);
+
+  // TODO сделать выделение цветом выбранного таба
+  secondCourseTab.setAttributes({
+    'id': 'second-course',
+    'text': 'второе',
+  });
+  garnishTab.setAttributes({
+    'id': 'garnish',
+    'text': 'гарнир',
+  });
+  saladTab.setAttributes({
+    'id': 'salad',
+    'text': 'салат',
+  });
+
+  return formTabs;
+}
+
+function renderCourseTab(hunduleForm, course) {
+  const horizontalLine = new CustomElement('div', 'horizontal-line');
+
+  const formTabs = getCourseTabs();
+
+  const recipeName = new CustomElement('span', 'hundle-form__recipe');
+  recipeName.getElement().innerText = course.description;
+
+  const removeDayButton = new CustomElement('button', 'hundle-form__remove-day-button');
+  removeDayButton.getElement().innerText = 'Удалить в этот день';
+
+  const removeAllDaysButton = new CustomElement('button', 'hundle-form__remove-all-days-button');
+  removeAllDaysButton.getElement().innerText = 'Удалить';
+
+  const activeButtonsContainer = new CustomElement('div', 'hundle-form__active-buttons');
+  activeButtonsContainer.appendChild(removeDayButton);
+  activeButtonsContainer.appendChild(removeAllDaysButton);
+  // removeDayButton.getElement().addEventListener('click', onAdd);
+
+  // вместо настоящей ссылки делает onclick и дописываем в url нужную фигню и делаем перерисовку страницы
+  const recipeLink = new CustomElement('span', 'hundle-form__recipe-link');
+  recipeLink.getElement().innerText = 'Ссылка на рецепт';
+
+  const formContent = new CustomElement('div', 'hundle-form__content');
+  formContent.appendChild(recipeName);
+  formContent.appendChild(recipeLink);
+  formContent.appendChild(activeButtonsContainer);
+
+  hunduleForm.appendChild(horizontalLine);
+  hunduleForm.appendChild(formTabs);
+  hunduleForm.appendChild(formContent);
+
+  const menuContainer = document.querySelector('.menu');
+  menuContainer.appendChild(hunduleForm.getElement());
+
+  if (selectedTab) {
+    document.querySelector(`#${selectedTab}`).classList.add('form-tab_active');
+  }
+}
+
+function changeCourseTab(event: PointerEvent) {
+  console.log('%c%s', 'background: cadetblue; padding: 8px;', 'changeCourseTab');
+  selectedTab = event.currentTarget.attributes.id.nodeValue;
+
+  renderForm();
 }
 
 menuInit();

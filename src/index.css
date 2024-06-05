@@ -257,3 +257,38 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.hundle-form__active-buttons {
+  display: flex;
+  justify-content: end;
+}
+
+.hundle-form__recipe {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.hundle-form__recipe-link {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 16px;
+}
+
+.hundle-form__remove-all-days-button {
+  border-radius: 4px;
+  border: none;
+  background-color: rgba(183, 108, 73, 0.8);
+  padding: 8px;
+}
+
+.hundle-form__remove-day-button {
+  border-radius: 4px;
+  border: none;
+  background-color: #B76C49;
+  padding: 8px;
+  margin-right: 8px;
+}
+
+.form-tab_active {
+  border: 1px solid black;
+}

@@ -110,7 +110,7 @@ export const recipes = [
   {
     "id": 2,
     "title": "Индейка в сметане в духовке",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 1,
     "nutritionalValue": "11/7/7 143",
     "ingredients": [
@@ -274,7 +274,7 @@ export const recipes = [
   {
     "id": 4,
     "title": "Лобио",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 2,
     "ingredients": [
       {
@@ -353,7 +353,7 @@ export const recipes = [
   {
     "id": 5,
     "title": "Венгерский гуляш",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 3,
     "ingredients": [
       {
@@ -528,7 +528,7 @@ export const recipes = [
   },
   {
     "id": 7,
-    "type": "secound-course",
+    "type": "second-course",
     "title": "Ароматная паста с тыквой",
     "idInCategory": 4,
     "ingredients": [
@@ -694,7 +694,7 @@ export const recipes = [
   {
     "id": 9,
     "title": "Булгур с сердечками и овощами",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 5,
     "ingredients": [
       {
@@ -1055,7 +1055,7 @@ export const recipes = [
   {
     "id": 13,
     "title": "«Эскимо» из курицы",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 6,
     "ingredients": [
       {
@@ -1111,7 +1111,7 @@ export const recipes = [
   {
     "id": 14,
     "title": "Фунчоза с креветками",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 7,
     "ingredients": [
       {
@@ -1421,7 +1421,7 @@ export const recipes = [
   {
     "id": 18,
     "title": "Куриные ножки в духовке",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 8,
     "ingredients": [
       {
@@ -1469,7 +1469,7 @@ export const recipes = [
   {
     "id": 19,
     "title": "Куриные наггетсы",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 9,
     "ingredients": [
       {
@@ -1516,7 +1516,7 @@ export const recipes = [
   {
     "id": 20,
     "title": "Карри с нутом на кокосовом молоке",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 10,
     "ingredients": [
       {
@@ -1631,7 +1631,7 @@ export const recipes = [
   {
     "id": 22,
     "title": "Паста с соусом из сливочного сыра и моцареллы",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 11,
     "ingredients": [
       {
@@ -1704,7 +1704,7 @@ export const recipes = [
   {
     "id": 23,
     "title": "Фунчоза с курицей и овощами",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 12,
     "ingredients": [
       {
@@ -1877,7 +1877,7 @@ export const recipes = [
   {
     "id": 26,
     "title": "Бефстроганов",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 13,
     "ingredients": [
       {
@@ -1934,7 +1934,7 @@ export const recipes = [
   {
     "id": 27,
     "title": "Сердечки с солеными огурцами",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 14,
     "ingredients": [
       {
@@ -1969,7 +1969,7 @@ export const recipes = [
   {
     "id": 28,
     "title": "Свинина с тыквой в духовке",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 15,
     "ingredients": [
       {
@@ -2126,7 +2126,7 @@ export const recipes = [
   {
     "id": 31,
     "title": "Котлеты из мяса (курицы, трески, щуки)",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 16,
     "ingredients": [
       {
@@ -2174,7 +2174,7 @@ export const recipes = [
   {
     "id": 32,
     "title": "Плов из курицы",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 17,
     "ingredients": [
       {
@@ -2231,7 +2231,7 @@ export const recipes = [
   {
     "id": 33,
     "title": "Макароны по-флотски",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 18,
     "ingredients": [
       {
@@ -2267,7 +2267,7 @@ export const recipes = [
   {
     "id": 34,
     "title": "Винегрет",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 18,
     "ingredients": [
       {
@@ -2324,7 +2324,7 @@ export const recipes = [
   {
     "id": 35,
     "title": "Мясо по-французски",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 18,
     "ingredients": [
       {
@@ -2368,7 +2368,7 @@ export const recipes = [
   {
     "id": 36,
     "title": "Оладьи из говяжьей печени",
-    "type": "secound-course",
+    "type": "second-course",
     "idInCategory": 18,
     "ingredients": [
       {

@@ -2589,7 +2589,7 @@ const recipes = [{
 }, {
   "id": 2,
   "title": "Индейка в сметане в духовке",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 1,
   "nutritionalValue": "11/7/7 143",
   "ingredients": [{
@@ -2710,7 +2710,7 @@ const recipes = [{
 }, {
   "id": 4,
   "title": "Лобио",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 2,
   "ingredients": [{
     "id": 1,
@@ -2769,7 +2769,7 @@ const recipes = [{
 }, {
   "id": 5,
   "title": "Венгерский гуляш",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 3,
   "ingredients": [{
     "id": 1,
@@ -2901,7 +2901,7 @@ const recipes = [{
   "directions": ["Одну большую луковицу, одну большую морковь, один стебель сельдерея моем, чистим.", "Моем, чистим 2-3 картофелины.", "Лук, морковь, сельдерей нарезаем кусочками, поджариваем на растительном масле.", "Добавляем картофель, шафран 1 ч.л., 2-3 лавровых листа, перец.", "Заливаем 750 мл воды и варим до готовности овощей.", "Рыбу из консервов разбираем на кусочки, удаляем косточки, выкладываем вместе с жидкостью в суп.", "Солим, добавляем 0.5 ч.л. карри и 0.5 ч.л тмина, укроп и варим ещё 5-7 минут."]
 }, {
   "id": 7,
-  "type": "secound-course",
+  "type": "second-course",
   "title": "Ароматная паста с тыквой",
   "idInCategory": 4,
   "ingredients": [{
@@ -3028,7 +3028,7 @@ const recipes = [{
 }, {
   "id": 9,
   "title": "Булгур с сердечками и овощами",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 5,
   "ingredients": [{
     "id": 1,
@@ -3302,7 +3302,7 @@ const recipes = [{
 }, {
   "id": 13,
   "title": "«Эскимо» из курицы",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 6,
   "ingredients": [{
     "id": 1,
@@ -3345,7 +3345,7 @@ const recipes = [{
 }, {
   "id": 14,
   "title": "Фунчоза с креветками",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 7,
   "ingredients": [{
     "ingredientId": 78,
@@ -3576,7 +3576,7 @@ const recipes = [{
 }, {
   "id": 18,
   "title": "Куриные ножки в духовке",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 8,
   "ingredients": [{
     "ingredientId": 91,
@@ -3610,7 +3610,7 @@ const recipes = [{
 }, {
   "id": 19,
   "title": "Куриные наггетсы",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 9,
   "ingredients": [{
     "ingredientId": 93,
@@ -3645,7 +3645,7 @@ const recipes = [{
 }, {
   "id": 20,
   "title": "Карри с нутом на кокосовом молоке",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 10,
   "ingredients": [{
     "ingredientId": 95,
@@ -3728,7 +3728,7 @@ const recipes = [{
 }, {
   "id": 22,
   "title": "Паста с соусом из сливочного сыра и моцареллы",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 11,
   "ingredients": [{
     "ingredientId": 102,
@@ -3783,7 +3783,7 @@ const recipes = [{
 }, {
   "id": 23,
   "title": "Фунчоза с курицей и овощами",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 12,
   "ingredients": [{
     "ingredientId": 80,
@@ -3906,7 +3906,7 @@ const recipes = [{
 }, {
   "id": 26,
   "title": "Бефстроганов",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 13,
   "ingredients": [{
     "ingredientId": 36,
@@ -3947,7 +3947,7 @@ const recipes = [{
 }, {
   "id": 27,
   "title": "Сердечки с солеными огурцами",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 14,
   "ingredients": [{
     "ingredientId": 112,
@@ -3969,7 +3969,7 @@ const recipes = [{
 }, {
   "id": 28,
   "title": "Свинина с тыквой в духовке",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 15,
   "ingredients": [{
     "ingredientId": 117,
@@ -4083,7 +4083,7 @@ const recipes = [{
 }, {
   "id": 30,
   "title": "Котлеты из мяса (курицы, трески, щуки)",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 16,
   "ingredients": [{
     "ingredientId": 90,
@@ -4116,7 +4116,7 @@ const recipes = [{
 }, {
   "id": 31,
   "title": "Плов из курицы",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 17,
   "ingredients": [{
     "ingredientId": 73,
@@ -4154,7 +4154,7 @@ const recipes = [{
 }, {
   "id": 32,
   "title": "Макароны по-флотски",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 18,
   "ingredients": [{
     "ingredientId": 36,
@@ -4179,7 +4179,7 @@ const recipes = [{
 }, {
   "id": 32,
   "title": "Винегрет",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 18,
   "ingredients": [{
     "ingredientId": 122,
@@ -4221,7 +4221,7 @@ const recipes = [{
 }, {
   "id": 32,
   "title": "Мясо по-французски",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 18,
   "ingredients": [{
     "ingredientId": 122,
@@ -4250,7 +4250,7 @@ const recipes = [{
 }, {
   "id": 32,
   "title": "Оладьи из говяжьей печени",
-  "type": "secound-course",
+  "type": "second-course",
   "idInCategory": 18,
   "ingredients": [{
     "ingredientId": 122,
@@ -17608,7 +17608,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const RECIPE_TYPE = {
   FIRST_COURSE: 'first-course',
-  SECOND_COURSE: 'secound-course',
+  SECOND_COURSE: 'second-course',
   GARNISH: 'garnish',
   SALAD: 'salad',
   DESSERT: 'dessert',
